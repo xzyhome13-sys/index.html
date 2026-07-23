@@ -991,7 +991,7 @@
                 </div>
             </div>
             <div class="contact-form">
-                <form id="contactForm">
+                <form id="contactForm" action="https://formspree.io/f/xwvgnzbg" method="POST">
                     <div class="form-group">
                         <label for="name">您的姓名</label>
                         <input type="text" id="name" placeholder="请输入您的姓名" required>
@@ -1062,12 +1062,8 @@
             });
         });
 
-        // 表单提交
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('感谢您的咨询！我们的工作人员将在24小时内与您联系。');
-            this.reset();
-        });
+        // 表单提交 - 使用Formspree处理
+        // 表单会自动提交到Formspree，然后转发到邮箱
 
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
