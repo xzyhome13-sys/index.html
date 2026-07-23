@@ -1064,8 +1064,37 @@
             });
         });
 
-        // 表单提交 - 使用Formspree处理
-        // 表单会自动提交到Formspree，然后转发到邮箱
+        // 表单提交 - 使用Formspree JSON API
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const data = {
+                name: form.name.value,
+                phone: form.phone.value,
+                company: form.company.value,
+                message: form.message.value
+            };
+            
+            fetch('https://formspree.io/f/xwvgnzbg', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('提交成功！感谢您的咨询，我们将尽快与您联系。');
+                    form.reset();
+                } else {
+                    alert('提交失败，请稍后再试或直接拨打电话联系我们。');
+                }
+            })
+            .catch(error => {
+                alert('网络错误，请稍后再试。');
+            });
+        });
 
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
